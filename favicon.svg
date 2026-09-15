@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="ZDS">
+  <rect width="64" height="64" rx="10" fill="#0a0a0a"/>
+  <rect x="5" y="5" width="54" height="54" rx="8" fill="none" stroke="#d4a017" stroke-width="1.6"/>
+  <text x="32" y="40" text-anchor="middle" font-family="Arial Black, Helvetica, sans-serif" font-size="18" font-weight="800" letter-spacing="1.5" fill="#d4a017">ZDS</text>
+  <path d="M18 48 L32 42 L46 48" fill="none" stroke="#d4a017" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
