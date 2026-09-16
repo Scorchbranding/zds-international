@@ -583,29 +583,148 @@ body.nav-open {
 }
 
 .pin-wrap {
+  padding: 0 !important;
   background:
-    radial-gradient(ellipse at 20% 0%, rgba(212, 160, 23, 0.08), transparent 42%),
+    radial-gradient(ellipse at 18% 20%, rgba(212, 160, 23, 0.12), transparent 40%),
+    radial-gradient(ellipse at 80% 80%, rgba(196, 73, 29, 0.08), transparent 36%),
     var(--bg-2);
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
+  overflow: hidden;
 }
 
 .pin-stage {
   min-height: 100svh;
   display: grid;
   align-items: center;
+  position: relative;
 }
 
-.pin-quote {
+.pin-stage-inner {
+  width: min(100%, var(--max));
+  margin: 0 auto;
+  padding: 0 var(--pad);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: clamp(1.5rem, 5vw, 4rem);
+  align-items: center;
+  min-height: 100svh;
+}
+
+.pin-rail {
+  display: grid;
+  justify-items: center;
+  gap: 1rem;
+}
+
+.pin-rail-track {
+  position: relative;
+  display: block;
+  width: 2px;
+  height: min(42vh, 320px);
+  background: rgba(239, 231, 214, 0.12);
+  overflow: hidden;
+}
+
+.pin-rail-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 0%;
+  background: linear-gradient(180deg, var(--gold), var(--gold-2));
+}
+
+.pin-dots {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.pin-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  background: transparent;
+  padding: 0;
+  transition: 0.35s var(--ease);
+}
+
+.pin-dot.is-active {
+  background: var(--gold);
+  border-color: var(--gold);
+  box-shadow: 0 0 0 6px rgba(212, 160, 23, 0.15);
+}
+
+.pin-copy {
+  position: relative;
+  min-height: min(52vh, 360px);
+}
+
+.pin-kicker {
+  font-size: 0.72rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.2rem;
+}
+
+.pin-kicker span {
+  color: var(--paper-dim);
+  margin-left: 0.55rem;
+}
+
+.pin-scenes {
+  position: relative;
+  min-height: clamp(8rem, 24vw, 14rem);
+}
+
+.pin-scene {
+  position: absolute;
+  inset: 0 auto auto 0;
+  margin: 0;
   font-family: "Instrument Serif", Georgia, serif;
-  font-size: clamp(2rem, 6vw, 4.4rem);
-  line-height: 1.12;
-  max-width: 16ch;
+  font-size: clamp(2.2rem, 6.4vw, 4.8rem);
+  line-height: 1.08;
+  max-width: 14ch;
+  will-change: transform, opacity;
 }
 
-.pin-quote em {
+.pin-scene em {
   font-style: italic;
   color: var(--gold-2);
+}
+
+.pin-hint {
+  margin-top: 2.4rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  opacity: 0.7;
+}
+
+.pin-hint::after {
+  content: "";
+  display: inline-block;
+  width: 1px;
+  height: 1.4rem;
+  margin-left: 0.7rem;
+  vertical-align: middle;
+  background: var(--gold);
+  animation: pinPulse 1.4s ease-in-out infinite;
+}
+
+@keyframes pinPulse {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translateY(6px);
+    opacity: 1;
+  }
 }
 
 .steps {
@@ -1053,8 +1172,38 @@ body.nav-open {
   .dual,
   .contact-band,
   .landing-layout,
-  .form-grid {
+  .form-grid,
+  .pin-stage-inner {
     grid-template-columns: 1fr;
+  }
+
+  .pin-rail {
+    grid-auto-flow: column;
+    justify-content: start;
+    align-items: center;
+    gap: 0.9rem;
+  }
+
+  .pin-rail-track {
+    width: min(42vw, 220px);
+    height: 2px;
+  }
+
+  .pin-rail-fill {
+    width: 0%;
+    height: 100%;
+  }
+
+  .pin-dots {
+    grid-auto-flow: column;
+  }
+
+  .pin-copy {
+    min-height: 220px;
+  }
+
+  .pin-hint {
+    display: none;
   }
 
   .site-header {
@@ -1108,6 +1257,21 @@ body.nav-open {
   [data-reveal] {
     opacity: 1;
     transform: none;
+  }
+
+  .pin-scene {
+    position: relative !important;
+    opacity: 1 !important;
+    transform: none !important;
+    margin-bottom: 1.2rem;
+  }
+
+  .pin-scenes {
+    min-height: 0;
+  }
+
+  .pin-hint {
+    display: none;
   }
 
   .marquee-track {
